@@ -16,7 +16,7 @@ const FlightBooking = () => {
   };
 
   const getLimitMessage = () => {
-    if (adultCount === 1) {
+    if (adultCount <= 1) {
       return "최소 승객 수에 도달했습니다.";
     }
     if (adultCount === MAX_PASSENGERS) {
@@ -32,16 +32,18 @@ const FlightBooking = () => {
         <span className="body-text">성인</span>
         <div className="counter">
           <button
-            aria-label="성인 승객 수 감소"
+            aria-label="성인 승객 감소"
             className="button-text"
+            disabled={adultCount === 1}
             onClick={decrementCount}
           >
             -
           </button>
           <span aria-live="polite">{adultCount}</span>
           <button
-            aria-label="성인 승객 수 증가"
+            aria-label="성인 승객 증가"
             className="button-text"
+            disabled={adultCount >= MAX_PASSENGERS}
             onClick={incrementCount}
           >
             +
